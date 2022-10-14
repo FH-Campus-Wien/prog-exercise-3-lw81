@@ -62,15 +62,15 @@ public class App {
     public static long[] lcg(long seed) {
         long[] randomNumbers = new long[10];
         double m = Math.pow(2, 31); //Modul
-        long mNeu = (long) m;
-        long a = 1103515245; //faktor
-        int c = 12345; //inkrement
+        final long MNeu = (long) m;
+        final int A = 1103515245; //faktor
+        final int C = 12345; //inkrement
         for (int i = 0; i < randomNumbers.length; i++) {
             //long newStart = seed;
-            seed = (seed * a + c) % mNeu;
+            seed = (seed * A + C) % MNeu;
             randomNumbers[i] = seed;
 
-            System.out.println("w");
+            //System.out.println("w");
         }
         return randomNumbers;
         //null weil noch kein array
@@ -84,7 +84,7 @@ public class App {
         while (numberToGuess >= 1 && numberToGuess <=100){
             int counter = 0;
             int newNumber = scanner.nextInt();
-            if (newNumber ==numberToGuess)
+            if (newNumber ==numberToGuess);
         }
     }
     public static void main(String[] args) {
