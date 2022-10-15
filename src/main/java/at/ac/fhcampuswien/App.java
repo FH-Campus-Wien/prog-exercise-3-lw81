@@ -78,22 +78,74 @@ public class App {
         //keine prints, test überprüft ob werte korrekt sind
     }
 
-    public static void guessingGame(int numberToGuess){
+    public static void guessingGame(int numberToGuess) {
+        int counter = 0;
         Scanner scanner = new Scanner(System.in);
+        int newNumber = 1;
+        do {
+            counter++;
+            newNumber = scanner.nextInt();
+            if (counter >= 10) {
+                System.out.print("Guess number " + counter + ": ");
+                System.out.println("You lost! Have you ever heard of divide & conquer?");
+                break;
+            }
+            System.out.print("Guess number " + counter + ": ");
+            if (newNumber == numberToGuess) {
+                System.out.println("You won wisenheimer!");
+                break;
+            } else if (newNumber > numberToGuess) {
+                System.out.println("The number AI picked is lower than your guess.");
+            } else {
+                System.out.println("The number AI picked is higher than your guess.");
+            }
+        } while (newNumber >= 1 && newNumber <= 100);
+    }
 
-        while (numberToGuess >= 1 && numberToGuess <=100){
-            int counter = 0;
-            int newNumber = scanner.nextInt();
-            if (newNumber ==numberToGuess);
+    public static int randomNumberBetweenOneAndHundred(){
+        Random r = new Random();
+        int number = r.nextInt(100) + 1;
+        return number;
+    }
+
+    public static boolean swapArrays(int[] arrayOne, int[] arrayTwo) {
+        if (arrayOne.length != arrayTwo.length) {
+            return false;
+        }else{
+        int[] arrayThree = new int [arrayOne.length];
+        for (int i = 0; i < arrayOne.length; i++) {
+            arrayThree[i] = arrayOne[i];
+        }
+        for (int i = 0; i < arrayOne.length; i++) {
+            arrayOne[i] = arrayTwo[i];
+        }
+        for (int i = 0; i < arrayTwo.length; i++) {
+            arrayTwo[i] = arrayThree[i];
+        }
+        return true;
         }
     }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int days = scan.nextInt();
         int start = scan.nextInt();
-        oneMonthCalendar(days,start); //void methode braucht immer einen aufruf, eine methode kann immer nur  1 Wert zurückliefern, es kommt immer eine zahl zurück,
-        //lcg hat returnwert, wo steht der methodenaufruf? teil einer zuweisung
+        oneMonthCalendar(days,start);
+
         long [] randomNumbers = lcg(0);
+
+        int numberToGuess = randomNumberBetweenOneAndHundred();
+        System.out.println("Nummer ist: " +  numberToGuess);
+        guessingGame(numberToGuess);
+
+        int [] arrayOne = {1,2,3,4,5};
+        int [] arrayTwo = {100,99,60,44,2};
+
+        swapArrays(arrayOne,arrayTwo);
+
+         //void methode braucht immer einen aufruf, eine methode kann immer nur  1 Wert zurückliefern, es kommt immer eine zahl zurück,
+        //lcg hat returnwert, wo steht der methodenaufruf? teil einer zuweisung
+
 
 
     }
