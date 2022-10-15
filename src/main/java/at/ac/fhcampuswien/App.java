@@ -115,11 +115,7 @@ public class App {
         int[] arrayThree = new int [arrayOne.length];
         for (int i = 0; i < arrayOne.length; i++) {
             arrayThree[i] = arrayOne[i];
-        }
-        for (int i = 0; i < arrayOne.length; i++) {
             arrayOne[i] = arrayTwo[i];
-        }
-        for (int i = 0; i < arrayTwo.length; i++) {
             arrayTwo[i] = arrayThree[i];
         }
         return true;
@@ -135,12 +131,11 @@ public class App {
         long [] randomNumbers = lcg(0);
 
         int numberToGuess = randomNumberBetweenOneAndHundred();
-        System.out.println("Nummer ist: " +  numberToGuess);
+        System.out.println("Nummer ist: " +  numberToGuess); //Vor Abgabe noch löschen...
         guessingGame(numberToGuess);
 
         int [] arrayOne = {1,2,3,4,5};
         int [] arrayTwo = {100,99,60,44,2};
-        //test
         swapArrays(arrayOne,arrayTwo);
 
          //void methode braucht immer einen aufruf, eine methode kann immer nur  1 Wert zurückliefern, es kommt immer eine zahl zurück,
