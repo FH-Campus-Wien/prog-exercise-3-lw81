@@ -122,25 +122,57 @@ public class App {
         }
     }
 
+    public static int checkDigit(int[] arrayCheckDigit) {
+        int sum = 0;
+        for (int i = 0; i < arrayCheckDigit.length; i++) {
+            arrayCheckDigit[i] = arrayCheckDigit[i]*(i+2);
+            sum = sum + arrayCheckDigit[i];
+        }
+        int remainder = sum%11;
+        int checksum = 11 -remainder;
+
+        if (checksum == 10){
+            checksum = 0;
+        }else if (checksum == 11){
+            checksum = 5;
+        }
+        System.out.println(checksum);
+        return checksum;
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int days = scan.nextInt();
         int start = scan.nextInt();
-        oneMonthCalendar(days,start);
+        oneMonthCalendar(days, start);
 
-        long [] randomNumbers = lcg(0);
+        long[] randomNumbers = lcg(0);
+
+        for (int i = 0; i < randomNumbers.length; i++) {
+            System.out.println("Number " + (i + 1) + ": " + randomNumbers[i]);
+        }
 
         int numberToGuess = randomNumberBetweenOneAndHundred();
-        System.out.println("Nummer ist: " +  numberToGuess); //Vor Abgabe noch löschen...
+        System.out.println("Nummer ist: " + numberToGuess); //Vor Abgabe noch löschen...
         guessingGame(numberToGuess);
 
-        int [] arrayOne = {1,2,3,4,5};
-        int [] arrayTwo = {100,99,60,44,2};
-        swapArrays(arrayOne,arrayTwo);
+        int[] arrayOne = {1, 2, 3, 4, 5};
+        int[] arrayTwo = {100, 99, 60, 44, 2};
+        swapArrays(arrayOne, arrayTwo);
 
-         //void methode braucht immer einen aufruf, eine methode kann immer nur  1 Wert zurückliefern, es kommt immer eine zahl zurück,
+        System.out.println("Laenge des Array eingeben ");
+        int arrayLength = scan.nextInt();
+        int[] arrayCheckDigit = new int[arrayLength];
+        for (int j = 0; j < arrayCheckDigit.length; j++) {
+            System.out.println("Bitte einstellige Zahl" + (j + 1) + "eingeben ");
+            arrayCheckDigit[j] = scan.nextInt();
+            if (arrayCheckDigit[j] >= 10 && arrayCheckDigit[j] < 0){
+                break;
+            }
+        }
+        checkDigit(arrayCheckDigit);
+        //void methode braucht immer einen aufruf, eine methode kann immer nur  1 Wert zurückliefern, es kommt immer eine zahl zurück,
         //lcg hat returnwert, wo steht der methodenaufruf? teil einer zuweisung
-
 
 
     }
