@@ -144,31 +144,32 @@ public class App {
         char[] charArrayNew = toCharArray(toCamelCaseString);
         int arrayLength = charArrayNew.length;
         int spaceCount = 0;
-        int copy = 0;
         int diff = 'a' - 'A';
-        if (charArrayNew[0] >'Z'){
+        if (charArrayNew[0] > 'Z') {
             charArrayNew[0] -= diff;
         }
         for (int i = 0; i < arrayLength; i++) {
-            //charArrayNew[0] -= diff;
-            if (charArrayNew[i] == ' ' && charArrayNew[i+1]>= 'a') {
+            if (charArrayNew[i] < '0') {
                 spaceCount++;
-                charArrayNew[i+1] -= diff;
-                //continue;
-            }else {
-                charArrayNew[copy++] = charArrayNew[i];
             }
-            if (charArrayNew[i] == '.' || charArrayNew[i] == ',' || charArrayNew[i] == '?' || charArrayNew[i] == '\''){
-                spaceCount++;
-                charArrayNew[i] = ' ';
+            if (i > 0 && charArrayNew[i] >= 'A' && charArrayNew[i] <= 'Z') {
+                charArrayNew[i] += diff;
             }
-//            if (charArrayNew[i] <= 'A' && charArrayNew[i] >= 'Z' && charArrayNew[i+1] != ' ' && charArrayNew[i-1] != ' '){
-//                charArrayNew[i+1] += diff;
-//            }
         }
-        System.out.println(charArrayNew);
-        System.out.println(spaceCount);
-        StringBuilder String = new StringBuilder(java.lang.String.valueOf(charArrayNew,0,arrayLength-spaceCount));
+
+        char[] charArrayCleaned = new char[arrayLength - spaceCount];
+        int newCnt = 0;
+        for (int i = 0; i < arrayLength; i++) {
+            if (charArrayNew[i] == ' ' && charArrayNew[i + 1] >= 'a' && charArrayNew[i + 1] <= 'z') {
+                charArrayNew[i + 1] -= diff;
+            }
+            if (!(charArrayNew[i] < '0')) {
+                charArrayCleaned[newCnt] = charArrayNew[i];
+                newCnt++;
+            }
+        }
+
+        StringBuilder String = new StringBuilder(java.lang.String.valueOf(charArrayCleaned, 0, charArrayCleaned.length));
         toCamelCaseString = String.toString();
 
         return toCamelCaseString;
@@ -196,7 +197,7 @@ public class App {
         }
 
         int numberToGuess = randomNumberBetweenOneAndHundred();
-        System.out.println("Nummer ist: " + numberToGuess); //Vor Abgabe noch löschen...
+        //System.out.println("Nummer ist: " + numberToGuess); //Vor Abgabe noch löschen...
         guessingGame(numberToGuess);
 
         int[] arrayOne = {1, 2, 3, 4, 5};
@@ -217,7 +218,6 @@ public class App {
         checkDigit(arrayCheckDigit);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("bitte string eingeben");
         String toCamelCaseString = scanner.nextLine();
         camelCase(toCamelCaseString);
 
@@ -227,31 +227,3 @@ public class App {
 
     }
 }
-//
-//    Schreiben Sie eine Methode camelCase, welche einen Satz in seine CamelCase Darstellung überführt.
-//        Dabei werden alle Leerzeichen entfernt und die Anfangsbuchstaben jedes Wortes in Großbuchstaben umgewandelt. Worte werden immer genau durch ein Leerzeichen voneinander getrennt. Grammatikalisch
-//        gültige Satzzeichen wie ".", ",", "'", "?", etc. sollen aus dem Satz herausgefiltert werden. Nur Buchstaben von 'a' bis 'z' und 'A' bis 'Z' sind zu berücksichtigen. Umlaute und Sonderzeichen werden von der
-//        Methode nicht unterstützt (Annahme: kommen im String nicht vor). Jeder Satz beginnt mit einem Großoder Kleinbuchstaben. Sollten mitten im Wort Großbuchstaben vorkommen, sind diese zu einem Kleinbuchstaben umzuwandeln.
-//        Die Methode soll einen String als Parameter erhalten. Anschließend ist dieser String in ein char Array mit
-//        Hilfe der Methode toCharArray() umzuwandeln. Iterieren Sie über das Array und schreiben das Ergebnis
-//        in einen String, welcher von der Methode nach Beendigung des Algorithmus zurückgegeben wird. Alternativ können Sie auch die Klasse StringBuilder verwenden, um die neu geschaffene Zeichenkette zu verknüpfen.
-//        Andere als die erwähnten Methoden und Klassen der API (wie etwa toUpperCase() oder replace()) dürfen
-//        nicht eingesetzt werden. Es ist manuell mit char's zu rechnen.
-//        Beispiele:
-//        "my name isn't Alice" -> "MyNameIsntAlice"
-//        "AnY noise annoYs an oYster but a noisY noise annoYs an oYster more." ->
-//        "AnyNoiseAnnoysAnOysterButANoisyNoiseAnnoysAnOysterMore"
-
-//        String a1 = "aPplE";
-//        char[] s1 = a1.toCharArray();
-//        int diff = 'a' - 'A';
-//
-//        for (int i=0; i < s1.length; i++) {
-//            if (s1[i] >= 'A' && s1[i] <= 'Z') {
-//                s1[i] += diff;
-//            }
-//        }
-//
-//        System.out.println(s1);
-//
-//
