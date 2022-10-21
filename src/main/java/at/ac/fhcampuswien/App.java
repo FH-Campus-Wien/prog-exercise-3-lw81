@@ -149,21 +149,21 @@ public class App {
             charArrayNew[0] -= diff;
         }
         for (int i = 0; i < arrayLength; i++) {
-            if (charArrayNew[i] < '0') {
+            if (charArrayNew[i] < '0') {            //alle zeichen kleiner 0 in Ascii Tabelle (zb leerzeichen, ?, ',) werden abgezählt
                 spaceCount++;
             }
-            if (i > 0 && charArrayNew[i] >= 'A' && charArrayNew[i] <= 'Z') {
+            if (i > 0 && charArrayNew[i] >= 'A' && charArrayNew[i] <= 'Z') { //alle Großbuchstaben werden zu kleinbuchstaben gemacht.
                 charArrayNew[i] += diff;
             }
         }
 
-        char[] charArrayCleaned = new char[arrayLength - spaceCount];
+        char[] charArrayCleaned = new char[arrayLength - spaceCount]; //neues cleaned array mit der alten array länge ohne leerzeichen stellen
         int newCnt = 0;
         for (int i = 0; i < arrayLength; i++) {
-            if (charArrayNew[i] == ' ' && charArrayNew[i + 1] >= 'a' && charArrayNew[i + 1] <= 'z') {
+            if (charArrayNew[i] == ' ' && charArrayNew[i + 1] >= 'a' && charArrayNew[i + 1] <= 'z') {    //kleinbuchstaben nach leerzeichen werden großbuchstaben
                 charArrayNew[i + 1] -= diff;
             }
-            if (!(charArrayNew[i] < '0')) {
+            if (!(charArrayNew[i] < '0')) {           //solange es kein  zeichen der ascii tabelle kleiner 0 ist, wird es ins neue cleaned array kopiert. alle leerzeichen und sonderzeichen weg.
                 charArrayCleaned[newCnt] = charArrayNew[i];
                 newCnt++;
             }
